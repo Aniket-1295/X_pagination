@@ -34,6 +34,7 @@ button {
   margin: 8px;
   border-radius: 5px;
   background-color: #019879;
+  cursor: pointer;
 
   + :nth-of-type(2) {
     padding: 10px 15px;

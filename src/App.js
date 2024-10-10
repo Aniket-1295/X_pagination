@@ -4,7 +4,6 @@ import "./App.css";
 const App = () => {
   const [employees, setEmployees] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading,setloading]=useState(true);
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -18,15 +17,13 @@ const App = () => {
         }
         const data = await response.json();
         setEmployees(data);
-        setloading(false)
       } catch (error) {
         alert("Failed to fetch data");
-        setloading(false);
       }
     };
 
     fetchData();
-  }, [currentPage]);
+  }, []);
 
   // Calculate the index of the first item of the current page
   const indexOfLastEmployee = currentPage * itemsPerPage;
@@ -39,34 +36,15 @@ const App = () => {
   // Handle page change
   const nextPage = () => {
     if (currentPage < Math.ceil(employees.length / itemsPerPage)) {
-      // console.log(currentPage)
       setCurrentPage(currentPage + 1);
     }
   };
 
   const previousPage = () => {
     if (currentPage > 1) {
-      // console.log(currentPage)
       setCurrentPage(currentPage - 1);
-      // console.log(currentPage)
-
     }
   };
-
-
-  useEffect(() => {
-  console.log("Current Page is:", currentPage);
-}, [currentPage]);
-
-
-
-  if(loading){
-    return<div>Loading...</div>
-  }
-
-  const totalPages = Math.ceil(employees.length / itemsPerPage);
-
-
 
   return (
     <div>
@@ -92,20 +70,13 @@ const App = () => {
         </tbody>
       </table>
       <div className="buttoncontainer">
-        
-        
-        <button 
-        
-        disabled={currentPage ===1 }
-        onClick={previousPage} 
-        >
+        <button onClick={previousPage} disabled={currentPage === 1}>
           Previous
         </button>
-        <span> {currentPage} </span>
+        <button> {currentPage} </button>
         <button
           onClick={nextPage}
-          // disabled={currentPage === Math.ceil(employees.length / itemsPerPage)}
-          disabled={currentPage === totalPages}
+          disabled={currentPage === Math.ceil(employees.length / itemsPerPage)}
         >
           Next
         </button>
