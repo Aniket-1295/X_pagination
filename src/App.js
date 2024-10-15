@@ -72,7 +72,7 @@ const App = () => {
             marginRight: '10px',
             border: 'none',
             cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
-            opacity: currentPage === 1 ? 0.5 : 1,
+            opacity: 1,
           }}
         >
           Previous 
@@ -101,7 +101,7 @@ const App = () => {
             marginLeft: '10px',
             border: 'none',
             cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
-            opacity: currentPage === totalPages ? 0.5 : 1,
+            opacity:1,
           }}
         >
           Next
